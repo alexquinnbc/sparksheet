@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Idea Alchemy Studio ✨</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #fefefe;
+      color: #111;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    textarea, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #333;
+    }
+    .output {
+      white-space: pre-wrap;
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✨ Idea Alchemy Studio</h1>
+    <p><strong>Turn raw ideas into useful digital artifacts.</strong><br />Ephemeral software for validation-first creators.</p>
+  </header>
+
+  <section>
+    <label for="ideaInput"><strong>Your Idea or Goal</strong></label>
+    <textarea id="ideaInput" rows="4" placeholder="E.g., Test if dog owners want AI-generated training plans..."></textarea>
+
+    <label for="artifactType"><strong>Artifact Type</strong></label>
+    <select id="artifactType">
+      <option value="prompt">Prompt Artifact</option>
+      <option value="interactive">Interactive Doc</option>
+      <option value="validation">Validation Script</option>
+      <option value="nocode">No-Code Click Dummy</option>
+      <option value="template">Prompt Template</option>
+      <option value="dashboard">Signal Tracker Dashboard</option>
+      <option value="video">Concept Video/Explainer</option>
+      <option value="microsaas">Micro SaaS Sketch</option>
+      <option value="canvas">Narrative Canvas</option>
+      <option value="shell">Zero-Code App Shell</option>
+      <option value="email">Trigger Email Artifact</option>
+      <option value="generator">Idea-to-Artifact Engine</option>
+    </select>
+
+    <button onclick="generateArtifact()">⚡ Generate Artifact Prompt</button>
+
+    <div class="output" id="outputBox">Your artifact prompt will appear here...</div>
+    <p class="note">Use this prompt in ChatGPT, Claude, or any LLM to generate the actual output.</p>
+  </section>
+
+  <script>
+    function generateArtifact() {
+      const idea = document.getElementById('ideaInput').value.trim();
+      const type = document.getElementById('artifactType').value;
+      const output = document.getElementById('outputBox');
+
+      if (!idea) {
+        output.innerText = 'Please enter an idea to generate a prompt.';
+        return;
+      }
+
+      const templates = {
+        prompt: `Create a prompt that will help me explore the following idea:
+"${idea}".
+Make the prompt modular and reusable.`,
+        interactive: `Design a single-file interactive document (HTML/CSS/JS) that helps test or explain this idea:
+"${idea}".`,
+        validation: `Write a script (can use Zapier, Airtable, or JS) to validate market/user interest for:
+"${idea}".`,
+        nocode: `Describe how to create a no-code prototype (e.g., Figma or Framer) to test:
+"${idea}".`,
+        template: `Make a prompt template system for productivity or creativity related to:
+"${idea}".`,
+        dashboard: `Design a lightweight dashboard (Notion, Airtable, etc.) to track signals for:
+"${idea}".`,
+        video: `Script a short (60-second) concept video or explainer for:
+"${idea}".`,
+        microsaas: `Sketch the logic for a simple Micro SaaS MVP (no login or billing) for:
+"${idea}".`,
+        canvas: `Create a visual narrative canvas to explain the problem, solution, and outcome of:
+"${idea}".`,
+        shell: `Create a basic zero-code app shell (static clickable app) that shows the UX of:
+"${idea}".`,
+        email: `Write a cold email that will test user interest or trigger a response related to:
+"${idea}".`,
+        generator: `Design a tool or prompt that turns ideas like "${idea}" into usable artifact templates automatically.`
+      };
+
+      output.innerText = templates[type] || "No matching artifact found.";
+    }
+  </script>
+</body>
+</html>
